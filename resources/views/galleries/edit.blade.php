@@ -10,9 +10,14 @@
 @section('page-content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('admin.galleries.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.galleries.update', $gallery->slug) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
+
+            <div class="mb-3">
+                <label class="form-label">Judul</label>
+                <input type="text" name="title" class="form-control" value="{{ old('title', $gallery->title) }}">
+            </div>
 
             <div class="mb-3">
                 <label class="form-label">Deskripsi</label>

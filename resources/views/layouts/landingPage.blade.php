@@ -10,6 +10,9 @@
       SMK NEGERI 4 BOGOR
     @endif
   </title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">  
 
   <!-- Dependencies -->
   <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
@@ -652,6 +655,14 @@
       #mainNavbar .btn-primary {
         width: 100%;
       }
+
+      .navbar-nav .nav-link {
+        color: #003a91 !important;
+      }
+      #mainNavbar .nav-link::after {
+        left: 0;
+        background-color: #003a91;
+      }
     }
   </style>
   <style>
@@ -763,7 +774,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
         <li class="nav-item"><a class="nav-link {{ Route::is('landingPage.home') ? "active" : "" }}" href="{{ route('landingPage.home') }}#hero">Beranda</a></li>
-        <li class="nav-item"><a class="nav-link {{ Route::is('landingPage.home') ? "active" : "" }}" href="{{ route('landingPage.home') }}#about">Tentang Kami</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('landingPage.home') }}#about">Tentang Kami</a></li>
         <li class="nav-item"><a class="nav-link {{ Route::is('landingPage.galleries') ? "active" : "" }}" href="{{ route('landingPage.galleries') }}">Galeri</a></li>
         <li class="nav-item"><a class="nav-link {{ Route::is('landingPage.events') ? "active" : "" }}" href="{{ route('landingPage.events') }}">Agenda</a></li>
         <li class="nav-item"><a class="nav-link {{ Route::is('landingPage.news') ? "active" : "" }}" href="{{ route('landingPage.news') }}">Berita</a></li>
@@ -842,6 +853,19 @@
     });
   </script> --}}
 
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const currentHash = window.location.hash;
+
+      document.querySelectorAll('.nav-link').forEach(function(el) {
+          const href = el.getAttribute('href');
+
+          if (href.endsWith(currentHash) && currentHash !== '') {
+              el.classList.add('active');
+          }
+      });
+  });
+  </script>
   <script>
     // Scroll effect
     window.addEventListener("scroll", function() {

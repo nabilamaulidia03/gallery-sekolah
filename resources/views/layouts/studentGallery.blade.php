@@ -10,7 +10,9 @@
         SMK NEGERI 4 BOGOR
       @endif
     </title>
-
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">  
     <!-- Sweet Alert css-->
     <link href="{{ @asset("assets/libs/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet" type="text/css" />
 

@@ -48,6 +48,16 @@
             <a href="#" class="small text-primary text-decoration-none">Lupa password?</a>
         </div>
 
+        {{-- reCAPTCHA --}}
+        @if(config('app.url') == "https://nabilamaulidia.my.id")
+        {!! NoCaptcha::renderJs() !!}
+        {!! NoCaptcha::display() !!}
+        @endif
+
+        @error('g-recaptcha-response')
+            <span class="text-danger small">{{ $message }}</span>
+        @enderror
+
         <button type="submit" class="btn login-btn w-100 py-2 fw-semibold">Masuk</button>
 
         <div class="text-center mt-3 small">

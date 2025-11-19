@@ -25,6 +25,7 @@ class StudentLoginController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string', 'min:6'],
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         // ✅ Coba login via guard student

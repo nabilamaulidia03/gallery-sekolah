@@ -38,6 +38,16 @@ class LoginController extends Controller
         // $this->middleware('auth')->only('logout');
     }
 
+    protected function validateLogin($request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+    }
+
+
     public function showLoginForm()
     {
         return view('auth.admin.login');

@@ -22,12 +22,14 @@ class StudentLoginController extends Controller
     public function login(Request $request)
     {
         // ✅ Validasi input
-        $credentials = $request->validate([
+        $validated = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string', 'min:6'],
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
+        $credentials = $request->only('email', 'password');
+        
         // ✅ Coba login via guard student
         if (Auth::guard('student')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();

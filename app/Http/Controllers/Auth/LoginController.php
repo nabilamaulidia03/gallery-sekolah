@@ -40,11 +40,17 @@ class LoginController extends Controller
 
     protected function validateLogin($request)
     {
-        $request->validate([
+        $rules = [
             'email' => 'required|email',
             'password' => 'required',
-            'g-recaptcha-response' => 'required|captcha',
-        ]);
+        ];
+
+        // aktifkan recaptcha hanya kalau domain tertentu
+        if (request()->getHost() === 'nabilamaulidia.my.id') {
+            $rules['g-recaptcha-response'] = 'required|captcha';
+        }
+
+        $request->validate($rules);
     }
 
     protected function credentials($request)

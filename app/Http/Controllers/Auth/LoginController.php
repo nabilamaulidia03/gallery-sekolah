@@ -47,6 +47,10 @@ class LoginController extends Controller
         ]);
     }
 
+    protected function credentials($request)
+    {
+        return $request->only($this->username(), 'password');
+    }
 
     public function showLoginForm()
     {

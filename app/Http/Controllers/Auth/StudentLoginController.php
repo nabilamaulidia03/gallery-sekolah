@@ -22,11 +22,17 @@ class StudentLoginController extends Controller
     public function login(Request $request)
     {
         // ✅ Validasi input
-        $validated = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string', 'min:6'],
-            'g-recaptcha-response' => 'required|captcha',
-        ]);
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+
+        // aktifkan recaptcha hanya kalau domain tertentu
+        if (request()->getHost() === 'nabilamaulidia.my.id') {
+            $rules['g-recaptcha-response'] = 'required|captcha';
+        }
+
+        $request->validate($rules);
 
         $credentials = $request->only('email', 'password');
         

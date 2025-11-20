@@ -55,16 +55,19 @@ class DatabaseSeeder extends Seeder
         $announcements = [
             [
                 'title' => 'Pengumuman Kelulusan 2025',
+                'slug' => 'pengumuman-kelulusan-2025',
                 'content' =>
                     'Pelaksanaan pengumuman kelulusan akan dilakukan secara online pada tanggal 20 Mei 2025 pukul 10.00 WIB.',
             ],
             [
                 'title' => 'Penerimaan Peserta Didik Baru',
+                'slug' => 'penerimaan-peserta-didik-baru',
                 'content' =>
                     'PPDB dibuka mulai tanggal 1 Juni 2025. Siswa dapat mendaftar melalui website resmi sekolah.',
             ],
             [
                 'title' => 'Libur Akhir Semester',
+                'slug' => 'libur-akhir-semester',
                 'content' =>
                     'Libur semester dimulai dari 10 Desember 2025 hingga 2 Januari 2026.',
             ],
@@ -80,11 +83,13 @@ class DatabaseSeeder extends Seeder
         $news = [
             [
                 'title' => 'Prestasi Siswa di Lomba LKS Nasional',
+                'slug' => 'prestasi-siswa-di-lomba-lks-nasional',
                 'content' =>
                     'Siswa jurusan PPLG berhasil meraih juara 1 pada ajang Lomba Kompetensi Siswa tingkat nasional tahun 2025.',
             ],
             [
                 'title' => 'Kegiatan Ekstrakurikuler Semester Genap',
+                'slug' => 'kegiatan-ekstrakurikuler-semester-genap',
                 'content' =>
                     'Ekstrakurikuler sekolah akan kembali aktif mulai bulan Februari 2025 dengan agenda kegiatan terbaru.',
             ],

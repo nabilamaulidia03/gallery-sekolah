@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AnnouncementController extends Controller
@@ -19,16 +20,20 @@ class AnnouncementController extends Controller
         $validator = Validator::make($request->all(), [
             'title'   => 'required',
             'content' => 'required',
+            'image'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        Announcement::create([
-            'title'   => $request->title,
-            'content' => $request->content,
-        ]);
+        $data = $validator->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('announcements', 'public');
+        }
+
+        Announcement::create($data);
 
         return redirect()
             ->route('admin.announcements.index')
@@ -40,16 +45,23 @@ class AnnouncementController extends Controller
         $validator = Validator::make($request->all(), [
             'title'   => 'required',
             'content' => 'required',
+            'image'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $announcement->update([
-            'title'   => $request->title,
-            'content' => $request->content,
-        ]);
+        $data = $validator->validated();
+
+        if ($request->hasFile('image')) {
+            if ($announcement->image && Storage::disk('public')->exists($announcement->image)) {
+                Storage::disk('public')->delete($announcement->image);
+            }
+            $data['image'] = $request->file('image')->store('announcements', 'public');
+        }
+
+        $announcement->update($data);
 
         return redirect()
             ->route('admin.announcements.index')

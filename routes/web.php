@@ -90,6 +90,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::resource('gallery-categories', GalleryCategoryController::class);
             Route::get('messages', [ContactMessageController::class, 'index'])->name('messages.index');
             Route::get('messages/{message}', [ContactMessageController::class, 'show'])->name('messages.show');
+            Route::delete('messages/{message}', [ContactMessageController::class, 'destroy'])->name('messages.destroy');
             Route::resource('events', EventController::class);
             Route::resource('announcements', AnnouncementController::class);
             Route::resource('news', NewsController::class);

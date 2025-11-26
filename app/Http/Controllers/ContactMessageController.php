@@ -29,8 +29,7 @@ class ContactMessageController extends Controller
 
     public function show(ContactMessage $message)
     {
-        // return view('messages.show', compact('message'));
-        return ;
+        return view('messages.show', compact('message'));
     }
 
     public function destroy(ContactMessage $message)
